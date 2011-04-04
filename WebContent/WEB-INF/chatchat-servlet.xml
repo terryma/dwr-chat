@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+  xmlns:util="http://www.springframework.org/schema/util"
+
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util-2.5.xsd
+    http://www.directwebremoting.org/schema/spring-dwr
+    http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+
+  <description>
+    ChatChat Spring bean definitions
+  </description>
+
+  <dwr:controller id="dwrController" debug="true">
+    <dwr:config-param name="activeReverseAjaxEnabled" value="true" />
+    <dwr:config-param name="allowScriptTagRemoting" value="true" />
+    <dwr:config-param name="maxWaitAfterWrite" value="1000" />
+    <dwr:config-param name="accessLogLevel" value="CALL" />
+  </dwr:controller>
+
+  <bean id="ChatChat" class="com.terryma.chatchat.ChatChat">
+    <!-- This tells dwr to remote this bean -->
+    <dwr:remote javascript="ChatChat">
+      <dwr:include method="sendMessage" />
+      <dwr:include method="registerName" />
+      <dwr:include method="unregisterName" />
+      <dwr:include method="getStates" />
+    </dwr:remote>
+  </bean>
+
+  <!-- Convenient to handle static pages -->
+  <bean id="filenameViewController"
+    class="org.springframework.web.servlet.mvc.UrlFilenameViewController">
+  </bean>
+
+  <!-- Mapping "html" URLs in the base directory to beans. -->
+  <bean id="urlMapping"
+    class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings">
+      <props merge="true">
+        <prop key="/engine.js">dwrController</prop>
+        <prop key="/util.js">dwrController</prop>
+        <prop key="/interface/**">dwrController</prop>
+        <prop key="/call/**">dwrController</prop>
+        <prop key="/chat">filenameViewController</prop>
+      </props>
+    </property>
+  </bean>
+
+  <!-- Resolving view names returned by controllers to jsp files and view 
+    class. -->
+  <bean id="viewResolver"
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass">
+      <value>org.springframework.web.servlet.view.JstlView</value>
+    </property>
+    <property name="prefix">
+      <value>/WEB-INF/jsps/</value>
+    </property>
+    <property name="suffix">
+      <value>.jsp</value>
+    </property>
+  </bean>
+
+  <!-- Message source. -->
+  <bean id="messageSource"
+    class="org.springframework.context.support.ResourceBundleMessageSource">
+    <property name="basename">
+      <value>messages</value>
+    </property>
+  </bean>
+
+</beans>
+

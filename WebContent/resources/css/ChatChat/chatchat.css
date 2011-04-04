@@ -1,0 +1,107 @@
+body {
+	font-size:0.8em;
+	font-family:Tahoma;
+}
+h1 {
+	font-size:120%;
+	font-weight:bolder;
+	letter-spacing:10px;
+}
+#chatOutputDiv {
+	float:left;
+	width:85%; 
+	height:500px;
+	border:1px solid;
+	overflow:auto;
+	padding:1px;
+	font-size:0.8em;
+	margin:1px;
+}
+#peopleDiv {
+	float:right;
+	width:13.7%;
+	height:500px;
+	border:1px solid;
+	overflow:auto;
+	padding:1px;
+	font-size:0.8em;
+	margin:1px;
+}
+#messageDiv input {
+	float:left;
+    width:76.3%;
+	border:1px solid;
+	padding:1px;
+	font-size:0.8em;
+	margin:1px;
+    height:1.3em;
+}
+#messageDiv a{
+	float:right;
+    width:13.7%;
+	border:1px solid;
+	padding:1px;
+	font-size:0.8em;
+	margin:1px;
+	text-align:center;
+    height:1.3em;
+	cursor:default;
+}
+#messageDiv label{
+    float:left;
+    border:1px solid;
+    padding:1px;
+    font-size:0.8em;
+    margin:1px;
+    height:1.3em;
+    width:8%;
+    text-align:center;
+}
+#nameDiv label {
+	float:left;
+    border:1px solid;
+    padding:1px;
+    font-size:0.8em;
+    margin:1px;
+    height:1.3em;
+	width:8%;
+	text-align:center;
+}
+#nameDiv input {
+	float:left;
+	width:76.3%;
+	border:1px solid;
+	padding:1px;
+	font-size:0.8em;
+	margin:1px;
+	height:1.3em;
+}
+#nameDiv a {
+	float:right;
+	width:13.7%;
+	border:1px solid;
+	padding:1px;
+	font-size:0.8em;
+	margin:1px;
+	text-align:center;
+	height:1.3em;
+	cursor:default;
+}
+#emoticonDiv {
+	margin:1px;
+	padding:3px;
+}
+#emoticonDiv img {
+	width:30px;
+	height:30px;
+}
+.emoticon {
+	width:30px;
+	height:30px;
+}
+#ft{
+    text-align:center;
+}
+#hd{
+    text-align:center;
+}
